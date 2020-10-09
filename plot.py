@@ -6,7 +6,9 @@ from mpl_toolkits.mplot3d import Axes3D
 
 lang_plot = 'ger'
 
-df = pd.read_pickle("dummy_LengthVStime.pkl")
+# df = pd.read_pickle("dummy_LengthVStime.pkl")
+df = pd.read_pickle("Z:/mycm_crypto/CryptEval/dummy_LengthVStime_raspi.pkl")
+
 # df = pd.read_pickle("dummy_AnzahlVStime.pkl")
 
 print(my_parameters.AnzahlVerschluesselungen_iter)
@@ -45,7 +47,7 @@ else:
     ax1.set_xlabel('Anzahl Maskierungen [n]')
     ax1.set_ylabel('Zeit [ms]')
     ax1.set_title(str('Nachrichtenlänge konstant bei ' + str(my_parameters.Nachrichtenlaenge_iter) + ' Bytes'))
-    ax1.set_ylim(ymin=0, ymax=800)
+    # ax1.set_ylim(ymin=0, ymax=800)
     ax1.set_xlim(xmin=0)
     plt.legend()
     # plt.grid()
@@ -77,7 +79,7 @@ else:
     ax2.set_xlabel('Nachrichtenlänge [Byte]')
     ax2.set_ylabel('Zeit [ms]')
     ax2.set_title(str('Anzahl Maskierungen konstant bei n=' + str(my_parameters.AnzahlVerschluesselungen_iter)))
-    ax2.set_ylim(ymin=0, ymax=800)
+    # ax2.set_ylim(ymin=0, ymax=800)
     ax2.set_xlim(xmin=0)
     plt.legend()
     # fig2.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/LengthVStime.pdf',
