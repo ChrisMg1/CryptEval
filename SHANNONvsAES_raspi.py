@@ -1,5 +1,5 @@
 import datetime
-import onetimepad
+# import onetimepad
 # from Crypto.Cipher import AES
 # Package geändert für raspi-portierung
 from Cryptodome.Cipher import AES
@@ -54,14 +54,11 @@ ZeitAES = []
 
 total_begin = datetime.datetime.now()
 
-LaengeRaspi = 100
-AnzVerschlRaspi = 150
+
 
 # start @ 1
-# for ik in range(my_parameters.AnzahlVerschluesselungen_iter, my_parameters.AnzahlVerschluesselungen_iter + 1):
-for ik in range(AnzVerschlRaspi, AnzVerschlRaspi + 1):
-    # for j in range(1, my_parameters.Nachrichtenlaenge_iter + 1):
-    for j in range(1, LaengeRaspi + 1):
+for ik in range(my_parameters.AnzahlVerschluesselungen_raspi, my_parameters.AnzahlVerschluesselungen_raspi + 1):
+    for j in range(1, my_parameters.Nachrichtenlaenge_raspi + 1):
         iter_msg = createMSGorKEY(j)
         iter_AES_key = createMSGorKEY(32)
         iter_OTP_key = createMSGorKEY(j)
@@ -75,10 +72,9 @@ for ik in range(AnzVerschlRaspi, AnzVerschlRaspi + 1):
 
         iter_msg = iter_AES_key = iter_OTP_key = None
 
-        print('länge: ', j, '/', LaengeRaspi)
+        print('länge: ', j, '/', my_parameters.Nachrichtenlaenge_raspi)
 
-    # print('anzahl: ', ik, '/', my_parameters.AnzahlVerschluesselungen_iter)
-    print('anzahl: ', ik, '/', AnzVerschlRaspi)
+    print('anzahl: ', ik, '/', my_parameters.AnzahlVerschluesselungen_raspi)
 
 print('Nachrichtenlaenge: ', Nachrichtenlaenge)
 print('AnzahlVerschluesselungen: ', AnzahlVerschluesselungen)
