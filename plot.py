@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 import pandas as pd
 import my_parameters
 import math
+import sys
 import tikzplotlib
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -18,11 +19,14 @@ if platform == 'pc':
     LaengeKonst = df[df["Nachrichtenlaenge"] == my_parameters.Nachrichtenlaenge_iter]
     AnzahlKonst = df[df["AnzahlVerschluesselungen"] == my_parameters.AnzahlVerschluesselungen_iter]
 
-else:
+elif platform == 'pi':
     #
     df = pd.read_pickle("Z:/mycm_crypto/CryptEval/dummy_LengthVStime_raspi.pkl")
     LaengeKonst = df[df["Nachrichtenlaenge"] == my_parameters.Nachrichtenlaenge_raspi]
     AnzahlKonst = df[df["AnzahlVerschluesselungen"] == my_parameters.AnzahlVerschluesselungen_raspi]
+
+else:
+    sys.exit("invalid platform")
 
 
 cr_ylim = roundup(max(max(AnzahlKonst['ZeitAES']), max(AnzahlKonst['ZeitOTP']), max(LaengeKonst['ZeitAES']), max(LaengeKonst['ZeitOTP'])))
@@ -48,7 +52,7 @@ if lang_plot == 'eng':
     fig1.savefig('AnzahlVStime_english.svg',
                  format='svg', orientation='landscape', pad_inches=0, dpi=1200)
 
-else:
+elif lang_plot == 'ger':
     ax1.set_xlabel('Anzahl Maskierungen [n]')
     ax1.set_ylabel('Zeit [ms]')
     ax1.set_title(str('Nachrichtenlänge konstant bei ' + str(my_parameters.Nachrichtenlaenge_iter) + ' Bytes'))
@@ -59,7 +63,8 @@ else:
     # fig1.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/AnzahlVStime.pdf',
     fig1.savefig('AnzahlVStime.pdf',
                  format='pdf', orientation='landscape', pad_inches=0)
-
+else:
+    sys.exit("invalid language")
 #fig1.show()
 
 
@@ -85,7 +90,7 @@ if lang_plot == 'eng':
     fig2.savefig('LengthVStime_english.svg',
                  format='svg', orientation='landscape', pad_inches=0, dpi=1200)
 
-else:
+elif lang_plot == 'ger':
     ax2.set_xlabel('Nachrichtenlänge [Byte]')
     ax2.set_ylabel('Zeit [ms]')
     ax2.set_title(str('Anzahl Maskierungen konstant bei n=' + str(my_parameters.AnzahlVerschluesselungen_iter)))
@@ -96,7 +101,8 @@ else:
     # fig2.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/LengthVStime.pdf',
     fig2.savefig('LengthVStime.pdf',
                  format='pdf', orientation='landscape', pad_inches=0)
-
+else:
+    sys.exit("invalid language")
 
 #fig2.show()
 
