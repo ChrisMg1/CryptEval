@@ -10,7 +10,7 @@ def roundup(in_time):
     return int(math.ceil(in_time / 50.0)) * 50
 
 lang_plot = 'ger'
-platform = 'pc'
+platform = 'pi'
 
 
 if platform == 'pc':
