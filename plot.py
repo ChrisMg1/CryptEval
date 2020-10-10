@@ -10,12 +10,12 @@ def roundup(in_time):
     return int(math.ceil(in_time / 50.0)) * 50
 
 lang_plot = 'ger'
-platform = 'pi'
+platform = 'pc'
 
 
 if platform == 'pc':
-    # df = pd.read_pickle("dummy_AnzahlVStime.pkl")
-    df = pd.read_pickle("dummy_LengthVStime.pkl")
+    # df = pd.read_pickle("ergebnisse/dummy_AnzahlVStime.pkl")
+    df = pd.read_pickle("ergebnisse/dummy_LengthVStime.pkl")
     LaengeKonst = df[df["Nachrichtenlaenge"] == my_parameters.Nachrichtenlaenge_iter]
     AnzahlKonst = df[df["AnzahlVerschluesselungen"] == my_parameters.AnzahlVerschluesselungen_iter]
 
@@ -29,9 +29,9 @@ else:
     sys.exit("invalid platform")
 
 
-cr_ylim = roundup(max(max(AnzahlKonst['ZeitAES']), max(AnzahlKonst['ZeitOTP']), max(LaengeKonst['ZeitAES']), max(LaengeKonst['ZeitOTP'])))
+# cr_ylim = roundup(max(max(AnzahlKonst['ZeitAES']), max(AnzahlKonst['ZeitOTP']), max(LaengeKonst['ZeitAES']), max(LaengeKonst['ZeitOTP'])))
 
-print(cr_ylim)
+
 
 fig1 = plt.figure(1)
 ax1 = fig1.add_subplot(111)
@@ -49,19 +49,19 @@ if lang_plot == 'eng':
     plt.legend()
     plt.grid(color='0.7', linestyle='dotted', linewidth=0.5)
     # fig1.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/AnzahlVStime_english.svg',
-    fig1.savefig('AnzahlVStime_english.svg',
+    fig1.savefig('ergebnisse/AnzahlVStime_english.svg',
                  format='svg', orientation='landscape', pad_inches=0, dpi=1200)
 
 elif lang_plot == 'ger':
     ax1.set_xlabel('Anzahl Maskierungen [n]')
     ax1.set_ylabel('Zeit [ms]')
     ax1.set_title(str('Nachrichtenlänge konstant bei ' + str(my_parameters.Nachrichtenlaenge_iter) + ' Bytes'))
-    ax1.set_ylim(ymin=0, ymax=cr_ylim)
+    ax1.set_ylim(ymin=0, ymax=500) # cr_ylim)
     ax1.set_xlim(xmin=0)
     plt.legend()
     plt.grid(color='0.7', linestyle='dotted', linewidth=0.5)
     # fig1.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/AnzahlVStime.pdf',
-    fig1.savefig('AnzahlVStime.pdf',
+    fig1.savefig('ergebnisse/AnzahlVStime.pdf',
                  format='pdf', orientation='landscape', pad_inches=0)
 else:
     sys.exit("invalid language")
@@ -87,19 +87,19 @@ if lang_plot == 'eng':
     plt.legend()
     plt.grid(color='0.7', linestyle='dotted', linewidth=0.5)
     # fig2.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/LengthVStime_english.svg',
-    fig2.savefig('LengthVStime_english.svg',
+    fig2.savefig('ergebnisse/LengthVStime_english.svg',
                  format='svg', orientation='landscape', pad_inches=0, dpi=1200)
 
 elif lang_plot == 'ger':
     ax2.set_xlabel('Nachrichtenlänge [Byte]')
     ax2.set_ylabel('Zeit [ms]')
     ax2.set_title(str('Anzahl Maskierungen konstant bei n=' + str(my_parameters.AnzahlVerschluesselungen_iter)))
-    ax2.set_ylim(ymin=0, ymax=cr_ylim)
+    ax2.set_ylim(ymin=0, ymax=500) # cr_ylim)
     ax2.set_xlim(xmin=0)
     plt.legend()
     plt.grid(color='0.7', linestyle='dotted', linewidth=0.5)
     # fig2.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/LengthVStime.pdf',
-    fig2.savefig('LengthVStime.pdf',
+    fig2.savefig('ergebnisse/LengthVStime.pdf',
                  format='pdf', orientation='landscape', pad_inches=0)
 else:
     sys.exit("invalid language")

@@ -53,8 +53,8 @@ ZeitAES = []
 total_begin = datetime.datetime.now()
 
 # start @ 1
-for ik in range(1, my_parameters.AnzahlVerschluesselungen_iter + 1):
-    for j in range(my_parameters.Nachrichtenlaenge_iter, my_parameters.Nachrichtenlaenge_iter + 1):
+for ik in range(my_parameters.AnzahlVerschluesselungen_iter, my_parameters.AnzahlVerschluesselungen_iter + 1):
+    for j in range(1, my_parameters.Nachrichtenlaenge_iter + 1):
         iter_msg = createMSGorKEY(j)
         iter_AES_key = createMSGorKEY(32)
         iter_OTP_key = createMSGorKEY(j)
@@ -88,7 +88,7 @@ print('AnzahlVerschluesselungen: ', AnzahlVerschluesselungen)
 print('ZeitAES: ', ZeitAES)
 print('ZeitOTP: ', ZeitOTP)
 
-# df.to_pickle("dummy_LengthVStime.pkl")
-df.to_pickle("dummy_AnzahlVStime.pkl")
+df.to_pickle("ergebnisse/dummy_LengthVStime.pkl")
+# df.to_pickle("ergebnisse/dummy_AnzahlVStime.pkl")
 
 print(datetime.datetime.now() - total_begin)
