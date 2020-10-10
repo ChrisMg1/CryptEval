@@ -1,7 +1,6 @@
-AnzahlVerschluesselungen_iter = 1000 # ursprünglich bei konst: 150
-Nachrichtenlaenge_iter = 1460 #  ursprünglich bei konst: 1410
+AnzahlVerschluesselungen_iter = 1000 # ursprünglich bei konst: 1000
+Nachrichtenlaenge_iter = 1460 #  ursprünglich bei konst: 1460
 
-Nachrichtenlaenge_iter_2 = 1300
 
 AnzahlVerschluesselungen_raspi = 100
 Nachrichtenlaenge_raspi = 1460

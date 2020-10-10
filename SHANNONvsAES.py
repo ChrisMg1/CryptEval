@@ -14,7 +14,9 @@ def OTPenc(OTPmessage, OTPkey, AESkey, AnzahlVorgaenge):
     begin_otp = datetime.datetime.now()
 
     for i in range(1, AnzahlVorgaenge):
-        # onetimepad.encrypt(str(OTPmessage), str(OTPkey))
+        # onetimepad.encrypt(OTPmessage, OTPkey)
+
+        # evtl in's als strings
         for m, k in zip(OTPmessage, OTPkey):
             my_otp = m ^ k
 
@@ -31,7 +33,8 @@ def AESenc(AESmessage, OTPkey, AESkey, AnzahlVorgaenge):
     for i in range(1, AnzahlVorgaenge):
         cipher = AES.new(AESkey, AES.MODE_EAX)
         nonce = cipher.nonce
-        ciphertext, tag = cipher.encrypt_and_digest(AESmessage)
+        #ciphertext, tag = cipher.encrypt_and_digest(AESmessage)
+        ciphertext = cipher.encrypt(AESmessage)
 
     end_aes = datetime.datetime.now()
     time_diff_aes = end_aes - begin_aes
