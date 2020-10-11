@@ -1,6 +1,7 @@
 import datetime
 import onetimepad
 from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
 from random import choice
 from string import ascii_uppercase
 import pandas as pd
@@ -25,7 +26,6 @@ def OTPenc(OTPmessage, OTPkey, AESkey, AnzahlVorgaenge):
 
     return time_diff_otp
 
-
 def AESenc(AESmessage, OTPkey, AESkey, AnzahlVorgaenge):
 
     begin_aes = datetime.datetime.now()
@@ -41,9 +41,9 @@ def AESenc(AESmessage, OTPkey, AESkey, AnzahlVorgaenge):
 
     return time_diff_aes
 
-
 def createMSGorKEY(in_length):
-    ret = ''.join(choice(ascii_uppercase) for i in range(in_length)).encode('utf8')
+    # ret = ''.join(choice(ascii_uppercase) for i in range(in_length)).encode('utf8')
+    ret = get_random_bytes(in_length)
     return ret
 
 

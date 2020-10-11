@@ -6,6 +6,19 @@ import sys
 import tikzplotlib
 from mpl_toolkits.mplot3d import Axes3D
 
+SMALL_SIZE = 13
+MEDIUM_SIZE = 13
+BIGGER_SIZE = 13
+
+plt.rc('font', size=MEDIUM_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=SMALL_SIZE)    # fontsize of the x and y labels
+plt.rc('xtick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=MEDIUM_SIZE)    # fontsize of the tick labels
+plt.rc('legend', fontsize=BIGGER_SIZE)    # legend fontsize
+plt.rc('figure', titlesize=MEDIUM_SIZE)  # fontsize of the figure title
+
+
 def roundup(in_time):
     return int(math.ceil(in_time / 50.0)) * 50
 
@@ -25,6 +38,12 @@ elif platform == 'pi':
     LaengeKonst = df[df["Nachrichtenlaenge"] == my_parameters.Nachrichtenlaenge_raspi]
     AnzahlKonst = df[df["AnzahlVerschluesselungen"] == my_parameters.AnzahlVerschluesselungen_raspi]
 
+elif platform == 'aes':
+    # df = pd.read_pickle("ergebnisse/dummy_AnzahlVStime.pkl")
+    df = pd.read_pickle("ergebnisse/dummy_LengthVStime_aes.pkl")
+    AnzahlKonst = df["Nachrichtenlaenge"]
+    # AnzahlKonst = df[df["AnzahlVerschluesselungen"] == my_parameters.AnzahlVerschluesselungen_iter]
+
 else:
     sys.exit("invalid platform")
 
@@ -35,9 +54,9 @@ else:
 
 fig1 = plt.figure(1)
 ax1 = fig1.add_subplot(111)
-ax1.plot(LaengeKonst['AnzahlVerschluesselungen'], LaengeKonst['ZeitAES'], color='k', marker='o', markersize=1.5,
+ax1.plot(LaengeKonst['AnzahlVerschluesselungen'], LaengeKonst['ZeitAES'], color='k', marker='o', markersize=1,
          linewidth=0.1, label=str('AES-256'))
-ax1.plot(LaengeKonst['AnzahlVerschluesselungen'], LaengeKonst['ZeitOTP'], color='0.7', marker='s', markersize=1.5,
+ax1.plot(LaengeKonst['AnzahlVerschluesselungen'], LaengeKonst['ZeitOTP'], color='0.7', marker='s', markersize=1,
          linewidth=0.1, label=str('SIKAF (OTP)'))
 
 if lang_plot == 'eng':
@@ -71,9 +90,9 @@ else:
 
 fig2 = plt.figure(2)
 ax2 = fig2.add_subplot(111)
-ax2.plot(AnzahlKonst['Nachrichtenlaenge'], AnzahlKonst['ZeitAES'], color='k', marker='o', markersize=0.5,
+ax2.plot(AnzahlKonst['Nachrichtenlaenge'], AnzahlKonst['ZeitAES'], color='k', marker='o', markersize=1,
          linewidth = 0.1, label=str('AES-256'))
-ax2.plot(AnzahlKonst['Nachrichtenlaenge'], AnzahlKonst['ZeitOTP'], color='0.7', marker='s', markersize=0.5,
+ax2.plot(AnzahlKonst['Nachrichtenlaenge'], AnzahlKonst['ZeitOTP'], color='0.7', marker='s', markersize=1,
          linewidth = 0.1, label=str('SIKAF (OTP)'))
 
 
@@ -136,7 +155,7 @@ plt.legend(title='AES-256')
 plt.tight_layout()
 
 # fig3.savefig('C:/Users/blue/Documents/Forschungsprojekt-FUH/Ausarbeitung/Abbildungen/plots/threedee')
-fig3.savefig('threedee')
+# fig3.savefig('threedee')
 #fig3.show()
 
 

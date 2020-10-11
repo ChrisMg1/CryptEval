@@ -39,3 +39,15 @@ def createMSGorKEY(in_length):
     return ret
 
 print(createMSGorKEY(8))
+
+a = [1,2,3]
+
+print(a)
+
+b = a.copy()
+
+print(b)
+
+a.append(4)
+
+print(b)
